@@ -1,0 +1,82 @@
+
+#donate {
+    margin: 0;
+    position: relative;
+    display: block;
+}
+
+#donate label {
+    width: 60px;
+    margin: 0;
+    background-color: #ddd;
+    border-radius: 2px;
+    overflow: auto;
+    position: relative;
+    display: table-cell;
+    float: left;
+    margin-right: 3px;
+}
+
+#donate label span {
+    text-align:center;
+    font-size: 14px;
+    padding:3px 0px;
+    display:block;
+    font-weight: normal;
+}
+
+#donate label input {
+    position:absolute;
+    top:-20px;
+}
+
+#donate input:checked + span {
+    background-color:#00a65a;
+    color:#F7F7F7;
+    border-color: #00a65a;
+}
+
+a.editbtn {
+    width: 50px;
+    display: table-cell;
+    margin: 0;
+    padding: 3px;
+    background: #f39c12;
+    float: left;
+    border-radius: 3px;
+    text-align: center;
+    color: #fff;
+    margin-right: 3px;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+    background: #333;
+    border-color: #333;
+}
+
+label {
+    font-weight:600 !important;
+}
+.table>thead>tr>th{
+    font-weight:600 !important;
+}
+tfoot th{
+    font-weight:600 !important;
+}
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    vertical-align: middle;
+}
+
+.box.box-purple {
+    border-top-color: #555299;
+}
+.pl-1{
+    padding-left: 5px;
+}
+
+.user-count {
+    margin-top: 0.2em;
+    display: block;
+}
