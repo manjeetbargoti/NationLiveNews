@@ -72,7 +72,7 @@
                                     <div class="col-xs-12 col-md-12 col-lg-12">
                                         <div class="form-group">
                                             <label>Post Type</label>
-                                            <select name="post_type" id="post_type" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <select name="post_type" id="blog_post_type" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                                 <option selected value="1">Standerd (Image/Text)</option>
                                                 <option value="2">Video Post</option>
                                             </select>
@@ -83,6 +83,13 @@
                                             <label>
                                                 <input name="feature_post" id="feature_post" type="checkbox" class="flat-green" value="1"> Featured  <small class="text-purple pl-1">( If you check this set Featured Post )</small>
                                             </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-md-12 hidden" id="YoutubeVideoId">
+                                        <div class="form-group">
+                                            <label for="Video ID">Video ID</label>
+                                            <input name="video_id" id="video_post" type="text" class="form-control" placeholder="Add Video id">
                                         </div>
                                     </div>
 

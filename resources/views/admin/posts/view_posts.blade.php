@@ -5,10 +5,10 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Listed Property</h1>
+      <h1>Listed Posts</h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">View Property</li>
+        <li class="active">View Posts</li>
       </ol>
     </section>
 
@@ -46,10 +46,15 @@
                             <tbody>
                                 <?php $i = 0 ?>
                                 @foreach($posts as $post)
+                                @if($post->post_type == 1)
                                 <?php $i++ ?>
                                 <tr>
                                     <td>{{ $i }}</td>
+                                    @if(!empty($post->post_image))
                                     <td><img width="60px" class="thumb" src="{{ asset('/images/backend_images/post_images/large/'.$post->post_image) }}"></td>
+                                    @elseif(!empty($post->video_id))
+                                    <td><iframe width="60" height="60" src="https://www.youtube.com/embed/{{$post->video_id}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+                                    @endif
                                     <td><a target="_blank" href="{{ url('/news/'.$post->post_url) }}">{{ $post->post_title }}</a></td>
                                     <td>{{ $post->cat_name }}</td>
                                     <td>{{ $post->auth_name }}</td>
@@ -83,6 +88,7 @@
                                     </div>
                                 </div>
                                 <!-- /. post information Model -->
+                                @endif
                                 @endforeach
                             </tbody>
                             <tfoot>

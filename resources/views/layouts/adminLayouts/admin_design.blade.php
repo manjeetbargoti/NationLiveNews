@@ -120,5 +120,22 @@ desired effect
 <!-- Custom js for Admin -->
 <script src="{{ asset('dist/js/custom.js') }}"></script>
 
+<script>
+
+$(function() {
+  $("#blog_post_type").change(function() {
+    if ($(this).val() == '2') {
+      $("#YoutubeVideoId").show();
+      $('#YoutubeVideoId').removeClass('hidden').addClass('show');
+    } else {
+      $("#YoutubeVideoId").hide();
+    }
+  });
+});
+
+
+
+</script>
+
 </body>
 </html>

@@ -1,28 +1,6 @@
 @extends('layouts.frontLayouts.frontend_design')
 @section('content')
 
-<!-- START OF MAIN SLIDER -->
-<section class="pt-0 pb-xs-20">
-		<div class="container">
-			<div class="row  ptb-10">
-				<div class="col-md-8 col-lg-9">
-					<a class="btn-fill-red plr-10 mtb-10 btn-b-md" href="#"><b>BREAKING NEWS</b></a>
-					<a class="dplay-inl-block color-grey mtb-10 ml-15 ml-md-0 hover-grey" href="#">8:30 AM Eight People 
-						have died and violent protest involving tens of thousands...</a>
-				</div><!-- col-md-8 -->
-				<div class="col-md-4 col-lg-3">
-					<form class="abs-form mtb-10" action="{{ url('/blog') }}" method="get">
-						<input type="text" placeholder="Search" name="search">
-						<button type="submit"><i class="ion-ios-search"></i></button>
-					</form>
-				</div><!-- col-md-4 -->
-			</div><!-- row -->
-			<!-- wrapper -->
-		</div><!-- container -->
-	</section>
-	<!-- END OF MAIN SLIDER -->
-	
-
 	<section class="ptb-30">
 		<div class="container">
 			<div class="row">
@@ -52,7 +30,11 @@
 					@if( $counter <= 8)
 					<div class="mb-30 sided-250x s-lg-height card-view">
 						<div class="s-left">
-							<img src="{{ url( asset('/images/backend_images/post_images/large/'.$post->post_image) ) }}" alt="{{ $post->post_title }}">
+							@if(!empty($post->post_image))
+								<img src="{{ url( asset('/images/backend_images/post_images/large/'.$post->post_image)) }}" alt="{{ $post->post_title }}">
+							@elseif(!empty($post->video_id))
+								<iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{$post->video_id}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							@endif
 						</div><!-- left-area -->
 						<div class="s-right ptb-30 pt-sm-20 pb-xs-5 plr-30 plr-xs-0">
 							<h4><a href="{{ url('/news/'.$post->post_url) }}">{{ $post->post_title }}</a></h4>
@@ -77,11 +59,16 @@
 						<h4 class="p-title"><b>LATEST NEWS</b></h4>
 						<?php $counter = 0; ?>
                         @foreach($posts as $post)
+						@if($post->post_type == 1)
                         <?php $counter ++; ?>
                         @if( $counter <= 8)
 						<div class="sided-80x mb-20">
 							<div class="s-left">
-								<img src="{{ url( asset('/images/backend_images/post_images/large/'.$post->post_image) ) }}" alt="{{ $post->post_title }}">
+								@if(!empty($post->post_image))
+									<img src="{{ url( asset('/images/backend_images/post_images/large/'.$post->post_image)) }}" alt="{{ $post->post_title }}">
+								@elseif(!empty($post->video_id))
+									<iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{$post->video_id}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								@endif
 							</div><!-- s-left -->
 							
 							<div class="s-right">
@@ -93,6 +80,7 @@
 								</ul>
 							</div><!-- s-left -->
 						</div><!-- sided-80x -->
+						@endif
 						@endif
                         @endforeach
 					</div><!-- card-view -->

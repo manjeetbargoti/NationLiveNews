@@ -1,25 +1,5 @@
 <?php $__env->startSection('content'); ?>
 
-    <!-- START OF MAIN SLIDER -->
-    <section class="pt-0 pb-0">
-		<div class="container ptb-10">
-			<div class="row">
-				<div class="col-md-8 col-lg-8">
-					<a class="btn-fill-red plr-10 mtb-10 btn-b-md" href="#"><b>ताज़ा खबर</b></a>
-					<a class="dplay-inl-block mtb-10 ml-15 ml-md-0 " href="#">8:30 आकाश में बादल नहीं थे और उसका रंग गहरा नीला था</a>
-				</div><!-- col-md-8 -->
-				<div class="col-md-4 col-lg-4">
-					<form class="abs-form mtb-10" action="<?php echo e(url('/blog')); ?>" method="get">
-						<input type="text" placeholder="Search" name="search">
-						<button type="submit"><i class="ion-ios-search"></i></button>
-					</form>
-				</div><!-- col-md-4 -->
-			</div><!-- row -->
-		</div><!-- container -->
-	</section>
-	<!-- END OF MAIN SLIDER -->
-	
-
 	<section class="ptb-30">
 		<div class="container">
 			<div class="row">
@@ -35,7 +15,11 @@
 					
                     <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 					<div class="p-30 mb-30 card-view">
+						<?php if(!empty($post->post_image)): ?>
 						<img src="<?php echo e(asset('/images/backend_images/post_images/large/'.$post->post_image)); ?>" alt="<?php echo e($post->post_title); ?>">
+						<?php elseif(!empty($post->video_id)): ?>
+						<iframe width="100%" height="350" src="https://www.youtube.com/embed/<?php echo e($post->video_id); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<?php endif; ?>
 						<h3 class="mt-30 mb-5"><b><?php echo e($post->post_title); ?></b></h3>
 						<ul class="list-li-mr-10 color-lite-black">
 							<li><i class="mr-5 font-12 ion-clock"></i><?php echo e(date('M d, Y', strtotime($post->created_at))); ?></li>
@@ -82,6 +66,7 @@
 						<div class="row">
                             <?php $counter = 0; ?>
                             <?php $__currentLoopData = $allposts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+							<?php if($post->post_type == 1): ?>
                             <?php if($loop->first): ?> <?php continue; ?> <?php endif; ?>
                             <?php $counter ++; ?>
                             <?php if( $counter <= 3): ?>
@@ -93,6 +78,7 @@
 									<!-- <li><i class="mr-5 font-12 ion-eye"></i>105</li> -->
 								</ul>
 							</div><!-- col-sm-4 -->
+							<?php endif; ?>
 							<?php endif; ?>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 						</div><!-- row -->

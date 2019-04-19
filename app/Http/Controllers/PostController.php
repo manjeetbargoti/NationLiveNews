@@ -24,7 +24,7 @@ class PostController extends Controller
 
             $author = Auth::user()->id;
 
-            // echo "<pre>"; print_r($author); die;
+            // echo "<pre>"; print_r($data); die;
 
             if(empty($data['status'])){
                 $status = 1;
@@ -49,6 +49,7 @@ class PostController extends Controller
             $posts->country         = $data['country'];
             $posts->state           = $data['state'];
             $posts->city            = $data['city'];
+            $posts->video_id        = $data['video_id'];
             $posts->post_author     = $author;
             $posts->comment_status  = $data['allow_comment'];
 
