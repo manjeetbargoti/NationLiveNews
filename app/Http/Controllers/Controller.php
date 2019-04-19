@@ -18,4 +18,9 @@ class Controller extends BaseController
         $bnews = json_decode(json_encode($bnews));
         return $bnews;
     }
+
+    public static function footerNews()
+    {
+        
+    }
 }

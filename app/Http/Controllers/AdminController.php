@@ -26,6 +26,9 @@ class AdminController extends Controller
             if(Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'role' => '1', 'status' => '1']))
             {
                 return redirect('/admin/dashboard')->with(compact('userData'));
+            }elseif(Auth::attempt(['phone' => $data['email'], 'password' => $data['password'], 'role' => '1', 'status' => '1']))
+            {
+                return redirect('/admin/dashboard')->with(compact('userData'));
             }
             else if(Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'role' => '2', 'status' => '1']))
             {
