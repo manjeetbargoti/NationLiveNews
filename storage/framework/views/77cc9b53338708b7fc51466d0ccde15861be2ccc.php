@@ -1,3 +1,12 @@
+<?php 
+
+	use App\Http\Controllers\Controller;
+	$posts = Controller::footerNews();
+
+	$catname = Controller::footerCat();
+
+?>
+
 <footer class="bg-191 pos-relative color-ccc bg-dark-primary pt-50">
 		<div class="abs-tblr pt-50 z--1 text-center">
 			<div class="h-80 pos-relative"><div class="bg-map abs-tblr opacty-1"></div></div>
@@ -6,17 +15,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-2 col-md-4 col-sm-4">	
-					<h5 class="f-title"><b>QUICK LINKS</b></h5>
+					<h5 class="f-title"><b>CATEGORIES</b></h5>
 					<ul class="mb-30 list-hover list-block list-a-ptb-5">
-							<li><a href="#">होम</a></li>
-							<li><a href="#">व्यापार</a></li>
-							<li><a href="#">खेल</a></li>
-							<li><a href="#">राजनीति</a></li>
-							<li><a href="#">यात्रा</a></li>
-							<li><a href="#">जीवन शैली</a></li>
-							<li><a href="#">संस्कृति</a></li>
-							<li><a href="#">टेक</a></li>
-							<li><a href="#">वीडियो</a></li>
+						<?php $__currentLoopData = $catname; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cn): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+						<li><a href="<?php echo e(url('/category/'.$cn->category_url)); ?>"><?php echo e($cn->category_name); ?></a></li>
+						<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 					</ul>
 				</div><!-- col-sm-2 -->
 				
@@ -24,35 +27,32 @@
 					<div class="pl-10 pl-sm-0">	
 						<h5 class="f-title"><b>FEATURED VIDEO</b></h5>
 						
+						<?php $counter = 0; ?>
+						<?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+						<?php if($post->post_type == 2): ?>
+						<?php $counter++; ?>
+						<?php if($counter <= 2): ?>
 						<div class="sided-80x mb-30">
 							<a class="s-left" href="#">
-								<img src="<?php echo e(url('images/frontend/images/video-1-300x300.jpg')); ?>" alt="">
-								<div class="hover-video sm"><span class="icon"><i class="ion-play"></i></span></div>
+								<?php if(!empty($post->post_image)): ?>
+                                <td><img width="60px" class="thumb" src="<?php echo e(asset('/images/backend_images/post_images/large/'.$post->post_image)); ?>"></td>
+                                <?php elseif(!empty($post->video_id)): ?>
+                                <td><iframe width="100%" height="100%" src="https://www.youtube.com/embed/<?php echo e($post->video_id); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+                                <?php endif; ?>
+								<!-- <div class="hover-video sm"><span class="icon"><i class="ion-play"></i></span></div> -->
 							</a><!-- s-left -->
 							
 							<div class="s-right pl-10 mb-30 ">
-								<h5><a href="#"><b>डैन कार्टर ने वर्षों तक रोल किया जबकि प्रो प्रभुत्व एंग्लैंड छोड़ दिया</b></a></h5>
+								<h5><a href="#"><b><?php echo e(str_limit($post->post_title, $limit=50)); ?></b></a></h5>
 								<ul class="mtb-5 list-li-mr-20 color-ash">
-									<li><i class="mr-5 font-12 ion-clock color-white"></i>25 जनवरी 2018</li>
-									<li><i class="mr-5 font-12 ion-eye color-white"></i>105</li>
+									<li><i class="mr-5 font-12 ion-clock color-white"></i><?php echo e(date('M d, Y', strtotime($post->created_at))); ?></li>
+									<!-- <li><i class="mr-5 font-12 ion-eye color-white"></i>105</li> -->
 								</ul>
 							</div><!-- s-left -->
 						</div><!-- sided-80x -->
-						
-						<div class="sided-80x mb-30">
-							<a class="s-left" href="#">
-								<img src="<?php echo e(url('images/frontend/images/video-2-300x300.jpg')); ?>" alt="">
-								<div class="hover-video sm"><span class="icon"><i class="ion-play"></i></span></div>
-							</a><!-- s-left -->
-							
-							<div class="s-right pl-10 mb-30 ">
-								<h5><a href="#"><b>समर्थक के प्रभुत्व के दौरान डेन कार्टर ने वर्षों तक रोल किया ...</b></a></h5>
-								<ul class="mtb-5 list-li-mr-20 color-ash">
-									<li><i class="mr-5 font-12 ion-clock color-white"></i>25 जनवरी 2018</li>
-									<li><i class="mr-5 font-12 ion-eye color-white"></i>105</li>
-								</ul>
-							</div><!-- s-left -->
-						</div><!-- sided-80x -->
+						<?php endif; ?>
+						<?php endif; ?>
+						<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 					</div><!-- pl-10 -->
 				</div><!-- col-sm-4 -->
 				
@@ -63,6 +63,7 @@
 						<h5 class="f-title"><b>LATEST NEWS</b></h5>
 						<?php $counter=1; ?>
 						<?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+						<?php if($post->post_type == 1): ?>
 						<?php if($counter <= 2 ): ?>
 							<div class="sided-80x mb-30">
 								<a class="s-left" href="#">
@@ -71,14 +72,15 @@
 								</a><!-- s-left -->
 								
 								<div class="s-right pl-10">
-									<h5><a href="#"><b><?php echo e($post->post_title); ?></b></a></h5>
+									<h5><a href="#"><b><?php echo e(str_limit($post->post_title, $limit=50)); ?></b></a></h5>
 									<ul class="mtb-5 list-li-mr-20 color-ash">
 										<li><i class="mr-5 font-12 ion-clock color-white"></i><?php echo e(date('M d, Y', strtotime($post->created_at))); ?></li>
-										<li><i class="mr-5 font-12 ion-eye color-white"></i>105</li>
+										<!-- <li><i class="mr-5 font-12 ion-eye color-white"></i>105</li> -->
 									</ul>
 								</div><!-- s-left -->
 							</div><!-- sided-80x -->
 							<?php $counter++ ; ?>		
+						<?php endif; ?>
 						<?php endif; ?>
 						<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
