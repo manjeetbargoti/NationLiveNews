@@ -215,7 +215,7 @@
 
 				<div class="col-md-4">
 					
-				<?php $counter = 0; ?>
+					<?php $counter = 0; ?>
 					@foreach($posts as $post)
 					@if ($loop->first) @continue @endif
 					<?php $counter ++; ?>
@@ -251,96 +251,27 @@
 
 			<div class="video_carousel">
 				<div class="video-carousel owl-carousel owl-theme">
+					<?php $counter = 0; ?>
+					@foreach($posts as $post)
+					<?php $counter ++; ?>
+					@if( $counter <= 3)
 					<div class="item">
-					<div class="video_box">
-						<a class="hover-grey dplay-block" href="#">
-							<div class="pos-relative"><img src="{{ url('images/frontend/images/video-1-300x300.jpg') }}" alt="">
-								<div class="hover-video"><span class="icon"><i class="ion-play"></i></span></div>
-							</div>
-					
-							<h5 class="mt-15"><b>डैन कार्टर ने वर्षों तक रोल किया जबकि प्रो प्रभुत्व इंग्लैंड छोड़ देता है</b></h5></a>
-						<ul class="mt-5 mb-30 list-li-mr-20 color-lite-black">
-							<li><i class="mr-5 font-12 ion-clock"></i>25 जनवरी 2018</li>
-							<li><i class="mr-5 font-12 ion-eye"></i>105</li>
-						</ul>
-					</div><!-- col-md-3 -->
+						<div class="video_box">
+							<a class="hover-grey dplay-block" href="{{ url('/news/'.$post->post_url) }}">
+								<div class="pos-relative">
+									<iframe width="100%" height="100%" src="https://www.youtube.com/embed/Mr3iH7qTJfk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									<div class="hover-video"><span class="icon"><i class="ion-play"></i></span></div>
+								</div>
+						
+								<h5 class="mt-15"><b>{{ strip_tags(str_limit($post->post_title, $limit=50)) }}</b></h5></a>
+							<ul class="mt-5 mb-30 list-li-mr-20 color-lite-black">
+								<li><i class="mr-5 font-12 ion-clock"></i>{{ date('M d, Y', strtotime($post->created_at)) }}</li>
+								<!-- <li><i class="mr-5 font-12 ion-eye"></i>105</li> -->
+							</ul>
+						</div><!-- col-md-3 -->
 					</div>
-
-					<div class="item">
-					<div class="video_box">
-						<a class="hover-grey dplay-block" href="#">
-							<div class="pos-relative"><img src="{{ url('images/frontend/images/video-1-300x300.jpg') }}" alt="">
-								<div class="hover-video"><span class="icon"><i class="ion-play"></i></span></div>
-							</div>
-					
-							<h5 class="mt-15"><b>डैन कार्टर ने वर्षों तक रोल किया जबकि प्रो प्रभुत्व इंग्लैंड छोड़ देता है</b></h5></a>
-						<ul class="mt-5 mb-30 list-li-mr-20 color-lite-black">
-							<li><i class="mr-5 font-12 ion-clock"></i>25 जनवरी 2018</li>
-							<li><i class="mr-5 font-12 ion-eye"></i>105</li>
-						</ul>
-					</div><!-- col-md-3 -->
-					</div>
-
-					<div class="item">
-					<div class="video_box">
-						<a class="hover-grey dplay-block" href="#">
-							<div class="pos-relative"><img src="{{ url('images/frontend/images/video-1-300x300.jpg') }}" alt="">
-								<div class="hover-video"><span class="icon"><i class="ion-play"></i></span></div>
-							</div>
-					
-							<h5 class="mt-15"><b>डैन कार्टर ने वर्षों तक रोल किया जबकि प्रो प्रभुत्व इंग्लैंड छोड़ देता है</b></h5></a>
-						<ul class="mt-5 mb-30 list-li-mr-20 color-lite-black">
-							<li><i class="mr-5 font-12 ion-clock"></i>25 जनवरी 2018</li>
-							<li><i class="mr-5 font-12 ion-eye"></i>105</li>
-						</ul>
-					</div><!-- col-md-3 -->
-					</div>
-
-					<div class="item">
-					<div class="video_box">
-						<a class="hover-grey dplay-block" href="#">
-							<div class="pos-relative"><img src="{{ url('images/frontend/images/video-1-300x300.jpg') }}" alt="">
-								<div class="hover-video"><span class="icon"><i class="ion-play"></i></span></div>
-							</div>
-					
-							<h5 class="mt-15"><b>डैन कार्टर ने वर्षों तक रोल किया जबकि प्रो प्रभुत्व इंग्लैंड छोड़ देता है</b></h5></a>
-						<ul class="mt-5 mb-30 list-li-mr-20 color-lite-black">
-							<li><i class="mr-5 font-12 ion-clock"></i>25 जनवरी 2018</li>
-							<li><i class="mr-5 font-12 ion-eye"></i>105</li>
-						</ul>
-					</div><!-- col-md-3 -->
-					</div>
-
-					<div class="item">
-					<div class="video_box">
-						<a class="hover-grey dplay-block" href="#">
-							<div class="pos-relative"><img src="{{ url('images/frontend/images/video-1-300x300.jpg') }}" alt="">
-								<div class="hover-video"><span class="icon"><i class="ion-play"></i></span></div>
-							</div>
-					
-							<h5 class="mt-15"><b>डैन कार्टर ने वर्षों तक रोल किया जबकि प्रो प्रभुत्व इंग्लैंड छोड़ देता है</b></h5></a>
-						<ul class="mt-5 mb-30 list-li-mr-20 color-lite-black">
-							<li><i class="mr-5 font-12 ion-clock"></i>25 जनवरी 2018</li>
-							<li><i class="mr-5 font-12 ion-eye"></i>105</li>
-						</ul>
-					</div><!-- col-md-3 -->
-					</div>
-
-					<div class="item">
-					<div class="video_box">
-						<a class="hover-grey dplay-block" href="#">
-							<div class="pos-relative"><img src="{{ url('images/frontend/images/video-1-300x300.jpg') }}" alt="">
-								<div class="hover-video"><span class="icon"><i class="ion-play"></i></span></div>
-							</div>
-					
-							<h5 class="mt-15"><b>डैन कार्टर ने वर्षों तक रोल किया जबकि प्रो प्रभुत्व इंग्लैंड छोड़ देता है</b></h5></a>
-						<ul class="mt-5 mb-30 list-li-mr-20 color-lite-black">
-							<li><i class="mr-5 font-12 ion-clock"></i>25 जनवरी 2018</li>
-							<li><i class="mr-5 font-12 ion-eye"></i>105</li>
-						</ul>
-					</div><!-- col-md-3 -->
-					</div>
-					
+					@endif
+					@endforeach
 				</div>
 			</div>
 			
@@ -360,13 +291,13 @@
 						<?php $counter ++; ?>
 						@if( $counter <= 1)
 						<img src="{{ asset('/images/backend_images/post_images/large/'.$ente->post_image) }}" alt="">
-						<h4 class="mt-15"><a href="#">
+						<h4 class="mt-15"><a href="{{ url('/news/'.$ente->post_url) }}">
 							<b>{{ $ente->post_title }}</b></a></h4>
 						<ul class="mtb-10 list-li-mr-5 color-lite-black">
 							<li><i class="mr-5 font-12 ion-ios-calendar-outline"></i>{{ date('M d, Y', strtotime($ente->created_at)) }}</li>
 							
-							<li><i class="mr-5 font-12 ion-ios-chatbubble-outline"></i>15</li>
-							<li><i class="mr-5 font-12 ion-eye"></i>105</li>
+							<!-- <li><i class="mr-5 font-12 ion-ios-chatbubble-outline"></i>15</li>
+							<li><i class="mr-5 font-12 ion-eye"></i>105</li> -->
 						</ul>
 							@foreach($ent as $ente)
 							@if ($loop->first) @continue @endif
@@ -393,13 +324,13 @@
 						<?php $counter ++; ?>
 						@if( $counter <= 1)
 						<img src="{{ asset('/images/backend_images/post_images/large/'.$tec->post_image) }}" alt="">
-						<h4 class="mt-15"><a href="#">
+						<h4 class="mt-15"><a href="{{ url('/news/'.$tec->post_url) }}">
 							<b>{{ $tec->post_title }}</b></a></h4>
 						<ul class="mtb-10 list-li-mr-5 color-lite-black">
 							<li><i class="mr-5 font-12 ion-ios-calendar-outline"></i>{{ date('M d, Y', strtotime($tec->created_at)) }}</li>
 							
-							<li><i class="mr-5 font-12 ion-ios-chatbubble-outline"></i>15</li>
-							<li><i class="mr-5 font-12 ion-eye"></i>105</li>
+							<!-- <li><i class="mr-5 font-12 ion-ios-chatbubble-outline"></i>15</li>
+							<li><i class="mr-5 font-12 ion-eye"></i>105</li> -->
 						</ul>
 						    <?php $counter = 0; ?>
 							@foreach($tech as $tec)
@@ -427,13 +358,13 @@
 						<?php $counter ++; ?>
 						@if( $counter <= 1)
 						<img src="{{ asset('/images/backend_images/post_images/large/'.$crimes->post_image) }}" alt="">
-						<h4 class="mt-15"><a href="#">
+						<h4 class="mt-15"><a href="{{ url('/news/'.$crimes->post_url) }}">
 							<b>{{ $crimes->post_title }}</b></a></h4>
 						<ul class="mtb-10 list-li-mr-5 color-lite-black">
 							<li><i class="mr-5 font-12 ion-ios-calendar-outline"></i>{{ date('M d, Y', strtotime($crimes->created_at)) }}</li>
 							
-							<li><i class="mr-5 font-12 ion-ios-chatbubble-outline"></i>15</li>
-							<li><i class="mr-5 font-12 ion-eye"></i>105</li>
+							<!-- <li><i class="mr-5 font-12 ion-ios-chatbubble-outline"></i>15</li>
+							<li><i class="mr-5 font-12 ion-eye"></i>105</li> -->
 						</ul>
 							@foreach($crime as $crimes)
 							@if ($loop->first) @continue @endif
