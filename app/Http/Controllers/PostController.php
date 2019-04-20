@@ -190,4 +190,79 @@ class PostController extends Controller
         $posts = Posts::orderBy('created_at', 'desc')->get();
         return view('frontend.nation_news', compact('nationposts', 'posts'));
     }
+
+    // Edit Post
+    public function editPost(Request $request, $id=null)
+    {
+
+        if($request->isMethod('post'))
+        {
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+
+            $post = new Posts;
+
+            if(!empty($id))
+            {
+                Posts::where(['id'=>$id])->update(['post_title'=>$data['post_title'], 'post_url'=>$data['post_url'], 
+                'post_content'=>$data['description'], 'comment_status'=>$data['allow_comment'], 'post_type'=>$data['post_type'], 
+                'video_id'=>$data['video_id'], 'post_category'=>$data['post_category'], 'country'=>$data['country'], 
+                'state'=>$data['state'], 'city'=>$data['city']]);
+                return redirect('/admin/posts')->with('flash_message_success', 'Post updated Successfully!');
+            }
+        }
+
+        $postdetails = Posts::where(['id'=>$id])->first();
+        $postdetails = json_decode(json_encode($postdetails));
+        $countryname = DB::table('countries')->get();
+        $statename = DB::table('states')->where(['country_id' => $postdetails->country])->get();
+        $cityname = DB::table('cities')->where(['state_id' => $postdetails->state])->get();
+
+        // Select Country Name
+        $country_dropdown = "<option selected value=''>Select Country</option>";
+        foreach ($countryname as $cname) {
+            if ($cname->id == $postdetails->country) {
+                $selected = "selected";
+            } else {
+                $selected = "";
+            }
+            $country_dropdown .= "<option value='" . $cname->id . "' " . $selected . ">" . $cname->name . "</option>";
+        }
+
+        // Select State Name
+        $state_dropdown = "<option selected value=''>Select State</option>";
+        foreach ($statename as $sname) {
+            if ($sname->id == $postdetails->state) {
+                $selected = "selected";
+            } else {
+                $selected = "";
+            }
+            $state_dropdown .= "<option value='" . $sname->id . "' " . $selected . ">" . $sname->name . "</option>";
+        }
+
+        // Select City Name
+        $city_dropdown = "<option selected value=''>Select City</option>";
+        foreach ($cityname as $cname) {
+            if ($cname->id == $postdetails->city) {
+                $selected = "selected";
+            } else {
+                $selected = "";
+            }
+            $city_dropdown .= "<option value='" . $cname->id . "' " . $selected . ">" . $cname->name . "</option>";
+        }
+
+        $category = PostCategory::where(['parent_cat'=>'0', 'status'=>1])->get();
+        $category_dropdown = '<option value="0" selected="selected">Parent</option>';
+
+        foreach ($category as $cat) {
+            if ($cat->category_url == $postdetails->post_category) {
+                $selected = "selected";
+            } else {
+                $selected = "";
+            }
+            $category_dropdown .= "<option value='" . $cat->category_url . "' " . $selected . ">" . $cat->category_name . "</option>";
+        }
+
+        return view('admin.posts.edit_post', compact('postdetails', 'countryname', 'category', 'category_dropdown', 'country_dropdown', 'state_dropdown', 'city_dropdown'));
+    }
 }

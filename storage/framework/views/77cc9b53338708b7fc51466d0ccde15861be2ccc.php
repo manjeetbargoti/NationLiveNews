@@ -2,7 +2,6 @@
 
 	use App\Http\Controllers\Controller;
 	$posts = Controller::footerNews();
-
 	$catname = Controller::footerCat();
 
 ?>

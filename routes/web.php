@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth']], function()
 
     // Post Module (Add/Edit/Delete/Update)
     Route::match(['get', 'post'], '/admin/new-post', 'PostController@addNewPost');
+    Route::match(['get', 'post'], '/admin/edit-post/{id}', 'PostController@editPost');
     Route::get('/admin/posts', 'PostController@viewPosts');
     Route::match(['get', 'post'], '/admin/new-category', 'PostCatController@addPostCat');
     Route::get('/admin/category', 'PostCatController@viewCategory');

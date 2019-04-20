@@ -46,7 +46,6 @@
                             <tbody>
                                 <?php $i = 0 ?>
                                 @foreach($posts as $post)
-                                @if($post->post_type == 1)
                                 <?php $i++ ?>
                                 <tr>
                                     <td>{{ $i }}</td>
@@ -60,7 +59,7 @@
                                     <td>{{ $post->auth_name }}</td>
                                     <td>{{ date('M d, Y', strtotime($post->created_at)) }}</td>
                                     <td>
-                                        <a href="{{ url('/admin/post/eddit/'.$post->id) }}" class="label label-info label-xs">Edit</a>
+                                        <a href="{{ url('/admin/edit-post/'.$post->id) }}" class="label label-info label-xs">Edit</a>
                                         <a href="{{ url('/admin/post/delete/'.$post->id) }}" class="label label-danger label-xs">Delete</a>
                                     </td>
                                 </tr>
@@ -88,7 +87,6 @@
                                     </div>
                                 </div>
                                 <!-- /. post information Model -->
-                                @endif
                                 @endforeach
                             </tbody>
                             <tfoot>
