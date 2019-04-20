@@ -46,6 +46,8 @@ Route::group(['middleware' => ['auth']], function()
     // Routes for Getting State List and City List Dynamically
     Route::get('/admin/get-state-list','PostController@getStateList');
     Route::get('/admin/get-city-list','PostController@getCityList');
+    Route::get('/admin/edit-post/get-state-list','PostController@getStateList');
+    Route::get('/admin/edit-post/get-city-list','PostController@getCityList');
     
     // Breaking News Module
     Route::match(['get', 'post'], '/admin/add-breaking-news', 'PostController@addBreakingNews');

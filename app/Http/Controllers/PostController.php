@@ -263,6 +263,6 @@ class PostController extends Controller
             $category_dropdown .= "<option value='" . $cat->category_url . "' " . $selected . ">" . $cat->category_name . "</option>";
         }
 
-        return view('admin.posts.edit_post', compact('postdetails', 'countryname', 'category', 'category_dropdown', 'country_dropdown', 'state_dropdown', 'city_dropdown'));
+        return view('admin.posts.edit_post', compact('postdetails', 'category', 'category_dropdown', 'country_dropdown', 'state_dropdown', 'city_dropdown'));
     }
 }
