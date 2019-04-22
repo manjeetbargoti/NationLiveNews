@@ -2485,3 +2485,11 @@ button.owl-next {
     width: auto;
     margin: auto;
 }
+
+.ul.box_list li {
+	display: block;
+}
+
+.ul.box_list li a{
+	display: block;
+}

@@ -273,7 +273,7 @@ class PostController extends Controller
     // Uttar Pradesh News
     public function stateWiseNews(Request $request, $id=null)
     {
-        $posts = Posts::where(['state'=>$id])->get();
+        $posts = Posts::where(['state'=>$id])->orderBy('created_at', 'desc')->get();
         $posts = json_decode(json_encode($posts));
         $users = User::get();
         $allposts = Posts::get();
