@@ -132,6 +132,8 @@ class PostController extends Controller
         $users = User::get();
         $allposts = Posts::get();
 
+        $metaTags = Posts::where(['post_url'=>$url])->get();
+
         foreach($posts as $key => $val)
         {
             $cat_name = PostCategory::where(['category_url'=>$val->post_category])->first();
@@ -142,7 +144,9 @@ class PostController extends Controller
         }
         $postcategory = PostCategory::where(['parent_cat'=>'0'])->get();
 
-        return view('layouts.single_post', compact('posts', 'users', 'allposts', 'postcategory'));
+        // echo "<pre>"; print_r($metaTags); die;
+
+        return view('layouts.single_post', compact('posts', 'users', 'allposts', 'postcategory', 'metaTags'));
     }
 
     // Delete Post

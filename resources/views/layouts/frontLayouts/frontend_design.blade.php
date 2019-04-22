@@ -7,6 +7,16 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <!-- for Facebook -->
+    @if(!empty($metaTags[0]->post_url))<meta property="og:url" content="{{ url('/news/'.$metaTags[0]->post_url) }}" />@endif
+
+    <meta property="og:type" content="{{ url('/') }}" />
+    @if(!empty($metaTags[0]->post_title))<meta property="og:title" content="{{ $metaTags[0]->post_title }}" />@endif
+
+    @if(!empty($metaTags[0]->post_content))<meta property="og:description" content="{{ strip_tags(str_limit($metaTags[0]->post_content, $limit=150)) }}" />@endif
+    
+    @if(!empty($metaTags[0]->post_image))<meta property="og:image" content="{{ asset('/images/backend_images/post_images/large/'.$metaTags[0]->post_image) }}"" />@endif
 
 	<title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -26,6 +36,10 @@
 	
 </head>
 <body>
+
+<div id="fb-root"></div>
+    <!-- Facebook Developer Script -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=336580363551684&autoLogAppEvents=1"></script>
 
 
     @include('layouts.frontLayouts.front_header')
@@ -131,6 +145,25 @@
     <script>
         var curmdate = moment().format("DD/MM/YYYY");
     </script>
+
+<script>
+    window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+        t._e.push(f);
+    };
+
+    return t;
+    }(document, "script", "twitter-wjs"));
+</script>
 	
 </body>
 </html>

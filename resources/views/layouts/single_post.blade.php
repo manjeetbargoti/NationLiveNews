@@ -10,7 +10,7 @@
 						<a class="mt-10" href="{{ url('/') }}"><i class="mr-5 ion-ios-home"></i>HOME</a>
 						<a class="mt-10" href="{{ url('/category/'.$post->cat_url) }}"><i class="mlr-10 ion-chevron-right"></i>{{ $post->cat_name }}</a>
 						<a class="mt-10 mb-30 color-ash" href=""><i class="mlr-10 ion-chevron-right"></i>
-                        {{ $post->post_title }}</a>
+                        {{ str_limit($post->post_title, $limit=90) }}</a>
 					</div>
                     @endforeach
 					
@@ -25,8 +25,8 @@
 						<ul class="list-li-mr-10 color-lite-black">
 							<li><i class="mr-5 font-12 ion-clock"></i>{{ date('M d, Y', strtotime($post->created_at)) }}</li>
 							<li><i class="mr-5 font-12 ion-android-person"></i>{{ $post->auth_name }}</li>
-							<!-- <li><i class="mr-5 font-12 ion-ios-chatbubble-outline"></i>15</li> -->
-							<!-- <li><i class="mr-5 font-12 ion-eye"></i>105</li> -->
+							<li><div class="fb-share-button" data-href="{{ url('/news/'.$post->post_url) }}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></li>
+							<li><div class="twitter-share-button"><a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a></div></li>
 						</ul>
 						
 						<div class="mt-30">{!! $post->post_content !!}</div>
@@ -36,10 +36,10 @@
 								<li><a href="{{ url('/category/'.$post->cat_url) }}">{{ $post->cat_name }}</a></li>
 							</ul>
 							<ul class="s-right sided-sm-center ptb-5 list-a-p-5 list-a-plr-10 font-11 color-ash">
-								<li><a href="#"><i class="ion-social-facebook"></i></a></li>
-								<li><a href="#"><i class="ion-social-twitter"></i></a></li>
-								<li><a href="#"><i class="ion-social-google"></i></a></li>
-								<li><a href="#"><i class="ion-social-instagram"></i></a></li>
+								<li><div class="fb-share-button" data-href="{{ url('/news/'.$post->post_url) }}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div></li>
+								<li><div><a class="twitter-share-button"href="https://twitter.com/intent/tweet">Tweet</a></div></li>
+								<!-- <li><a href="#"><i class="ion-social-google"></i></a></li>
+								<li><a href="#"><i class="ion-social-instagram"></i></a></li> -->
 							</ul>
 						</div><!-- sided-half -->
 					</div><!-- card-view -->

@@ -44,4 +44,5 @@ class Controller extends BaseController
 
         return $cat_name;
     }
+
 }
