@@ -7,6 +7,16 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- for Google -->
+    @if(!empty($metaTags[0]->post_title))<meta name="title" content="{{ $metaTags[0]->post_title }}"/>@endif
+
+    @if(!empty($metaTags[0]->post_content))<meta name="description" content="{{ $metaTags[0]->post_title }}"/>@endif
+    
+    @if(!empty($metaTags[0]->post_keywords))<meta name="keywords" content="{{ $metaTags[0]->post_keywords }}"/>@endif
+    
+    @if(!empty($metaTags[0]->post_url))<link rel="canonical" href="{{ $metaTags[0]->post_url }}" />@endif
+    <meta name="copyright" content="Copyright (C) Since 2019 - This Content is owned by original poster" />
     
     <!-- for Facebook -->
     @if(!empty($metaTags[0]->post_url))<meta property="og:url" content="{{ url('/news/'.$metaTags[0]->post_url) }}" />@endif
@@ -18,7 +28,7 @@
     
     @if(!empty($metaTags[0]->post_image))<meta property="og:image" content="{{ asset('/images/backend_images/post_images/large/'.$metaTags[0]->post_image) }}"" />@endif
 
-	<title>{{ config('app.name', 'Laravel') }}</title>
+	<title>@if(!empty($metaTags[0]->post_title)){{ $metaTags[0]->post_title }} | Nation Live News @else Nation Live News @endif</title>
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 

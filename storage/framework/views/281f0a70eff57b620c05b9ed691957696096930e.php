@@ -7,6 +7,16 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+
+    <!-- for Google -->
+    <?php if(!empty($metaTags[0]->post_title)): ?><meta name="title" content="<?php echo e($metaTags[0]->post_title); ?>"/><?php endif; ?>
+
+    <?php if(!empty($metaTags[0]->post_content)): ?><meta name="description" content="<?php echo e($metaTags[0]->post_title); ?>"/><?php endif; ?>
+    
+    <?php if(!empty($metaTags[0]->post_keywords)): ?><meta name="keywords" content="<?php echo e($metaTags[0]->post_keywords); ?>"/><?php endif; ?>
+    
+    <?php if(!empty($metaTags[0]->post_url)): ?><link rel="canonical" href="<?php echo e($metaTags[0]->post_url); ?>" /><?php endif; ?>
+    <meta name="copyright" content="Copyright (C) Since 2019 - This Content is owned by original poster" />
     
     <!-- for Facebook -->
     <?php if(!empty($metaTags[0]->post_url)): ?><meta property="og:url" content="<?php echo e(url('/news/'.$metaTags[0]->post_url)); ?>" /><?php endif; ?>
@@ -18,7 +28,7 @@
     
     <?php if(!empty($metaTags[0]->post_image)): ?><meta property="og:image" content="<?php echo e(asset('/images/backend_images/post_images/large/'.$metaTags[0]->post_image)); ?>"" /><?php endif; ?>
 
-	<title><?php echo e(config('app.name', 'Laravel')); ?></title>
+	<title><?php if(!empty($metaTags[0]->post_title)): ?><?php echo e($metaTags[0]->post_title); ?> | Nation Live News <?php else: ?> Nation Live News <?php endif; ?></title>
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
