@@ -87,7 +87,11 @@
               <?php $i++ ?>
                 <li class="item">
                   <div class="product-img">
+                  @if(!empty($post->post_image))
                     <img src="{{ asset('/images/backend_images/post_images/large/'.$post->post_image) }}" alt="Product Image">
+                  @elseif(!empty($post->video_id))
+                    <iframe width="50" height="50" src="https://www.youtube.com/embed/{{$post->video_id}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  @endif
                   </div>
                   <div class="product-info">
                       <span class="product-description">{{ $post->cat_name }}</span>

@@ -228,7 +228,7 @@
 	</section>
 
 	<!-- START OF VIDEO -->
-	<section class="pb-20">
+	<section class="pb-20 @if($vpost_c > 0) d-block @else d-none @endif">
 		<div class="container">
 			<h4 class="p-title"><b>विशेष रुप से प्रदर्शित वीडियो</b></h4>
 			<div class="video_carousel">

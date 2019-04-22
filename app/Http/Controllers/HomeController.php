@@ -40,8 +40,8 @@ class HomeController extends Controller
         $tech = Posts::where(['post_category'=> 'tech'])->orderBy('created_at', 'desc')->get();
         $crime = Posts::where(['post_category'=> 'crime'])->orderBy('created_at', 'desc')->get();
 
-        $vposts = Posts::where(['post_type'=>2])->orderBy('created_at', 'desc')->get();
-        $vposts = json_decode(json_encode($vposts));
+        $vpost_c = Posts::where(['post_type'=>2])->count();
+        // $vposts = json_decode(json_encode($vposts));
 
         foreach($posts as $key => $val)
         {
@@ -51,18 +51,18 @@ class HomeController extends Controller
             $posts[$key]->auth_name = $author->name;
         }
 
-        foreach($vposts as $key => $val)
-        {
-            $cat_name = PostCategory::where(['category_url'=>$val->post_category])->first();
-            $vposts[$key]->cat_name = $cat_name->category_name;
-            $author = User::where(['id'=>$val->post_author])->first();
-            $vposts[$key]->auth_name = $author->name;
-        }
+        // foreach($vposts as $key => $val)
+        // {
+        //     $cat_name = PostCategory::where(['category_url'=>$val->post_category])->first();
+        //     $vposts[$key]->cat_name = $cat_name->category_name;
+        //     $author = User::where(['id'=>$val->post_author])->first();
+        //     $vposts[$key]->auth_name = $author->name;
+        // }
 
         $postcategory = PostCategory::where(['parent_cat'=>'0'])->get();
         $breakingnews = BreakingNews::where(['status'=>1])->orderBy('created_at', 'desc')->get();
 
-        return view('home', compact('posts', 'vposts', 'postcategory', 'breakingnews','postcategory','up','uk','ent','tech','crime'));
+        return view('home', compact('posts', 'vpost_c', 'postcategory', 'breakingnews','postcategory','up','uk','ent','tech','crime'));
 
         // return view('layouts.frontLayouts.front_header', compact('postcategory'));
     }

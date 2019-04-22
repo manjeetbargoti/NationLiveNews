@@ -32,7 +32,7 @@
   <ul class="sidebar-menu" data-widget="tree">
     <li class="header">HEADER</li>
     <!-- Optionally, you can add icons to the links -->
-    <li class="active"><a href="header.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+    <li class="active"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
     <li class="treeview">
       <a href="#"><i class="fa fa-users"></i> <span>Users</span>
         <span class="pull-right-container">
