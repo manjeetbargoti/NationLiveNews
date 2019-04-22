@@ -54,7 +54,7 @@
 								@if($upn->post_type == 1)
 								<?php $counter++;?>
 								@if( $counter <= 1 )
-									<h4 class="p-title"><b>उत्तर प्रदेश</b></h4>
+									<h4 class="p-title"><b><a href="{{ url('/news/state/1584') }}">उत्तर प्रदेश</a></b></h4>
 									@if(!empty($upn->post_image))
 									<img src="{{ url( asset('/images/backend_images/post_images/large/'.$upn->post_image) ) }}" alt="">
 									@elseif(!empty($upn->video_id))
@@ -97,7 +97,7 @@
 								@if($ukn->post_type == 1)
 								<?php $counter++;?>
 								@if( $counter <= 1 )
-									<h4 class="p-title"><b>उत्तराखंड</b></h4>
+									<h4 class="p-title"><b><a href="{{ url('/news/state/1585') }}">उत्तराखंड</a></b></h4>
 									@if(!empty($ukn->post_image))
 									<img src="{{ url( asset('/images/backend_images/post_images/large/'.$ukn->post_image) ) }}" alt="">
 									@elseif(!empty($ukn->video_id))
@@ -263,7 +263,7 @@
 				<div class="col-md-12 col-lg-4">
 					<!-- START OF SIDEBAR MOST READ -->
 					<div class="mb-30 p-15 card-view">
-						<h4 class="p-title"><b>मनोरंजन</b></h4>
+						<h4 class="p-title"><b><a href="{{ url('/category/entertainment') }}">मनोरंजन</a></b></h4>
 						<?php $counter = 0;?>
 						@foreach($ent as $ente)
 						@if($ente->post_type == 1)
@@ -302,7 +302,7 @@
 				<div class="col-md-12 col-lg-4">
 					<!-- START OF SIDEBAR MOST READ -->
 					<div class="mb-30 p-15 card-view">
-						<h4 class="p-title"><b>मोबाइल-टेक</b></h4>
+						<h4 class="p-title"><b><a href="{{ url('/category/tech') }}">मोबाइल-टेक</a></b></h4>
 						<?php $counter = 0;?>
 						@foreach($tech as $tec)
 						@if($tec->post_type == 1)
@@ -342,7 +342,7 @@
 				<div class="col-md-12 col-lg-4">
 					<!-- START OF SIDEBAR MOST READ -->
 					<div class="mb-30 p-15 card-view">
-						<h4 class="p-title"><b>क्राइम</b></h4>
+						<h4 class="p-title"><b><a href="{{ url('/category/crime') }}">क्राइम<a></b></h4>
 						<?php $counter = 0;?>
 						@foreach($crime as $crimes)
 						@if($crimes->post_type == 1)

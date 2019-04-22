@@ -55,8 +55,8 @@
 			<div class="owl-carousel navigation_slide owl-theme">
 				<div><a href="{{ url('/category/lok-sabha-elections-2019') }}"><b>लोकसभा चुनाव 2019</b></a></div>
 				<div><a href="{{ url('/category/cricket') }}">IPL 2019</a></div>
-				<div><a href="#">उत्तर प्रदेश</a></div>
-				<div><a href="#">उत्तराखंड</a></div>
+				<div><a href="{{ url('/news/state/1584') }}">उत्तर प्रदेश</a></div>
+				<div><a href="{{ url('/news/state/1585') }}">उत्तराखंड</a></div>
 			</div>
 		</div>
 	</section>

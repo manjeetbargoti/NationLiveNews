@@ -114,7 +114,9 @@ class PostCatController extends Controller
             $posts[$key]->auth_name = $author->name;
         }
 
-        return view('layouts.category_post', compact('posts', 'categorypost', 'postcategory', 'pcategory'));
+        $categorypost_count = Posts::where(['post_category'=>$url])->count();
+
+        return view('layouts.category_post', compact('posts', 'categorypost', 'postcategory', 'pcategory', 'categorypost_count'));
     }
     public function searchResult(Request $request)
     {

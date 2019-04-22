@@ -26,10 +26,13 @@ Route::get('/blog', 'PostCatController@searchResult');
 
 // News filter by Nation
 Route::get('/news/nation', 'PostController@newsNation');
+// Statewise News
+Route::get('/news/state/{id}', 'PostController@stateWiseNews');
 
 // Admin Login and Dashboard Routes
 Route::match(['get', 'post'], '/admin', 'AdminController@adminLogin');
 Route::get('/admin/dashboard', 'AdminController@dashboard');
+
 
 Route::group(['middleware' => ['auth']], function()
 {

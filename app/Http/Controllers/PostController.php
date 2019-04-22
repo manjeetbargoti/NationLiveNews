@@ -269,4 +269,31 @@ class PostController extends Controller
 
         return view('admin.posts.edit_post', compact('postdetails', 'category', 'category_dropdown', 'country_dropdown', 'state_dropdown', 'city_dropdown'));
     }
+
+    // Uttar Pradesh News
+    public function stateWiseNews(Request $request, $id=null)
+    {
+        $posts = Posts::where(['state'=>$id])->get();
+        $posts = json_decode(json_encode($posts));
+        $users = User::get();
+        $allposts = Posts::get();
+
+        // $metaTags = Posts::where(['id'=>$id])->get();
+
+        foreach($posts as $key => $val)
+        {
+            $cat_name = PostCategory::where(['category_url'=>$val->post_category])->first();
+            $posts[$key]->cat_name = $cat_name->category_name;
+            $posts[$key]->cat_url = $cat_name->category_url;
+            $author = User::where(['id'=>$val->post_author])->first();
+            $posts[$key]->auth_name = $author->name;
+        }
+        $postcategory = PostCategory::where(['parent_cat'=>'0'])->get();
+
+        $lposts = Posts::orderBy('created_at', 'desc')->get();
+
+        // echo "<pre>"; print_r($metaTags); die;
+
+        return view('frontend.news.csc_news', compact('posts', 'users', 'allposts', 'postcategory', 'lposts'));
+    }
 }

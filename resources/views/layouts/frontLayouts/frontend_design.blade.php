@@ -26,7 +26,7 @@
 
     @if(!empty($metaTags[0]->post_content))<meta property="og:description" content="{{ strip_tags(str_limit($metaTags[0]->post_content, $limit=150)) }}" />@endif
     
-    @if(!empty($metaTags[0]->post_image))<meta property="og:image" content="{{ asset('/images/backend_images/post_images/large/'.$metaTags[0]->post_image) }}"" />@endif
+    @if(!empty($metaTags[0]->post_image))<meta property="og:image" content="{{ asset('/images/backend_images/post_images/large/'.$metaTags[0]->post_image) }}" />@endif
 
 	<title>@if(!empty($metaTags[0]->post_title)){{ $metaTags[0]->post_title }} | Nation Live News @else Nation Live News @endif</title>
 
@@ -43,7 +43,6 @@
     <link rel="stylesheet" href="http://releases.flowplayer.org/7.2.7/skin/skin.css">
     <link rel="stylesheet" href="{{ asset('css/frontend/animate.css') }}">
 	
-	
 </head>
 <body>
 
@@ -51,14 +50,11 @@
     <!-- Facebook Developer Script -->
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=336580363551684&autoLogAppEvents=1"></script>
 
-
     @include('layouts.frontLayouts.front_header')
 
     @yield('content')
 
     @include('layouts.frontLayouts.front_footer')
-
-
 
     <!-- SCIPTS -->
     <script src="{{ asset('js/frontend/jquery-3.2.1.min.js') }}"></script>
@@ -71,7 +67,6 @@
 
     <!-- Flowplayer library -->
     <script src="http://releases.flowplayer.org/7.2.7/flowplayer.min.js"></script>
-
 
     <script>
 		flowplayer("#cflow", {
@@ -91,7 +86,6 @@
 		
 		}); 
 	</script>
-
 
 	<script>
         // When the user scrolls the page, execute myFunction 

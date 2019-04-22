@@ -26,7 +26,7 @@
 
     <?php if(!empty($metaTags[0]->post_content)): ?><meta property="og:description" content="<?php echo e(strip_tags(str_limit($metaTags[0]->post_content, $limit=150))); ?>" /><?php endif; ?>
     
-    <?php if(!empty($metaTags[0]->post_image)): ?><meta property="og:image" content="<?php echo e(asset('/images/backend_images/post_images/large/'.$metaTags[0]->post_image)); ?>"" /><?php endif; ?>
+    <?php if(!empty($metaTags[0]->post_image)): ?><meta property="og:image" content="<?php echo e(asset('/images/backend_images/post_images/large/'.$metaTags[0]->post_image)); ?>" /><?php endif; ?>
 
 	<title><?php if(!empty($metaTags[0]->post_title)): ?><?php echo e($metaTags[0]->post_title); ?> | Nation Live News <?php else: ?> Nation Live News <?php endif; ?></title>
 
@@ -43,7 +43,6 @@
     <link rel="stylesheet" href="http://releases.flowplayer.org/7.2.7/skin/skin.css">
     <link rel="stylesheet" href="<?php echo e(asset('css/frontend/animate.css')); ?>">
 	
-	
 </head>
 <body>
 
@@ -51,14 +50,11 @@
     <!-- Facebook Developer Script -->
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=336580363551684&autoLogAppEvents=1"></script>
 
-
     <?php echo $__env->make('layouts.frontLayouts.front_header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <?php echo $__env->yieldContent('content'); ?>
 
     <?php echo $__env->make('layouts.frontLayouts.front_footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-
 
     <!-- SCIPTS -->
     <script src="<?php echo e(asset('js/frontend/jquery-3.2.1.min.js')); ?>"></script>
@@ -71,7 +67,6 @@
 
     <!-- Flowplayer library -->
     <script src="http://releases.flowplayer.org/7.2.7/flowplayer.min.js"></script>
-
 
     <script>
 		flowplayer("#cflow", {
@@ -91,7 +86,6 @@
 		
 		}); 
 	</script>
-
 
 	<script>
         // When the user scrolls the page, execute myFunction 
