@@ -166,7 +166,7 @@ $('#country').change(function(){
             success:function(res){               
             if(res){
                 $("#state").empty();
-                $("#state").append('<option>Select State</option>');
+                $("#state").append('<option value="">Select State</option>');
                 $.each(res,function(key,value){
                     $("#state").append('<option value="'+key+'">'+value+'</option>');
                 });
@@ -190,7 +190,7 @@ $('#country').change(function(){
             success:function(res){               
             if(res){
                 $("#city").empty();
-                $("#city").append('<option>Select City</option>');
+                $("#city").append('<option value="">Select City</option>');
                 $.each(res,function(key,value){
                     $("#city").append('<option value="'+key+'">'+value+'</option>');
                 });
