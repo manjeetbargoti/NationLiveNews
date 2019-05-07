@@ -47,7 +47,7 @@
 								<!-- <li><i class="mr-5 font-12 ion-ios-chatbubble-outline"></i>15</li>
 								<li><i class="mr-5 font-12 ion-eye"></i>105</li> -->
 							</ul>
-							<p class="mt-10">{!! str_limit($post->post_content, $limit=150) !!}</p>
+							<p class="mt-10">{{ strip_tags(str_limit($post->post_content, $limit=150)) }}</p>
 						</div><!-- right-area -->
 					</div><!-- sided-250x -->
 					@endif

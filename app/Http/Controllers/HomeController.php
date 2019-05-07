@@ -60,10 +60,8 @@ class HomeController extends Controller
         // }
 
         $postcategory = PostCategory::where(['parent_cat'=>'0'])->get();
-        $breakingnews = BreakingNews::where(['status'=>1])->orderBy('created_at', 'desc')->get();
+        $breakingnews = BreakingNews::where(['status'=>1])->orderBy('created_at','desc')->get();
 
         return view('home', compact('posts', 'vpost_c', 'postcategory', 'breakingnews','postcategory','up','uk','ent','tech','crime'));
-
-        // return view('layouts.frontLayouts.front_header', compact('postcategory'));
     }
 }

@@ -90,8 +90,6 @@ class PostCatController extends Controller
     public function viewCategoryPost(Request $request, $url)
     {
         $categorypost = Posts::where(['post_category'=>$url])->orderBy('created_at', 'desc')->paginate(2);
-        // $categorypost = json_decode(json_encode($categorypost));
-        // echo "<pre>"; print_r($categorypost); die;
         $postcategory = PostCategory::where(['parent_cat'=>'0'])->get();
         $pcategory = PostCategory::where(['category_url' => $url])->get();
 
@@ -116,13 +114,13 @@ class PostCatController extends Controller
 
         $categorypost_count = Posts::where(['post_category'=>$url])->count();
 
-        return view('layouts.category_post', compact('posts', 'categorypost', 'postcategory', 'pcategory', 'categorypost_count'));
+        return view('layouts.category_post', compact('posts', 'categorypost', 'postcategory', 'pcategory','categorypost_count'));
     }
     public function searchResult(Request $request)
     {
         $search = $request->input('search');
-        // return $query->where('post_title', 'like', '%' .$s. '%')->orwhere('post_category', 'like', '%' .$s. '%');
-        $categorypost = Posts::latest()->search($search)->paginate(9);
+        // return $search->where('post_title', 'like', '%' .$s. '%')->orwhere('post_category', 'like', '%' .$s. '%');
+        $categorypost = Posts::where('post_title', 'like', '%' .$search. '%')->orwhere('post_category', 'like', '%' .$search. '%')->paginate(9);
         $postcategory = PostCategory::where(['parent_cat'=>'0'])->get();
         $pcategory = PostCategory::where(['category_url' => $search ])->get();
 
@@ -144,7 +142,7 @@ class PostCatController extends Controller
             $author = User::where(['id'=>$val->post_author])->first();
             $posts[$key]->auth_name = $author->name;
         }
-
-        return view('layouts.category_post', compact('posts', 'categorypost', 'postcategory', 'pcategory','search'));
+        $categorypost_count = Posts::where('post_title', 'like', '%' .$search. '%')->orwhere('post_category', 'like', '%' .$search. '%')->count();
+        return view('layouts.category_post', compact('posts', 'categorypost', 'postcategory', 'pcategory','search','categorypost_count'));
     }
 }
