@@ -184,7 +184,7 @@ class PostController extends Controller
 
             return redirect()->back()->with('flash_message_success', 'Breaking News Added Successfully!');
         }
-        return view('admin.news.add_breaking_news');
+        return view('admin.news.view_breaking_news');
     }
     
     // News Nation Function
@@ -295,5 +295,26 @@ class PostController extends Controller
         // echo "<pre>"; print_r($metaTags); die;
 
         return view('frontend.news.csc_news', compact('posts', 'users', 'allposts', 'postcategory', 'lposts'));
+    }
+
+    // View Breaking News
+    public function viewBreakingNews()
+    {
+        $breakingNews = BreakingNews::orderBy('created_at', 'desc')->get();
+
+        $breakingNews = json_decode(json_encode($breakingNews));
+        // echo "<pre>"; print_r($breakingNews); die;       
+
+        return view('admin.news.view_breaking_news', compact('breakingNews'));
+    }
+
+    // Delete Breaking News
+    public function deletebNews($id=null)
+    {
+        if(!empty($id))
+        {
+            BreakingNews::where(['id'=>$id])->delete();
+            return redirect()->back()->with('flash_message_success', 'News Deleted Successfully!');
+        }
     }
 }

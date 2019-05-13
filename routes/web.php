@@ -54,6 +54,8 @@ Route::group(['middleware' => ['auth']], function()
     
     // Breaking News Module
     Route::match(['get', 'post'], '/admin/add-breaking-news', 'PostController@addBreakingNews');
+    Route::get('admin/breaking-news', 'PostController@viewBreakingNews');
+    Route::get('/admin/news/delete/{id}', 'PostController@deletebNews');
 
 });
 

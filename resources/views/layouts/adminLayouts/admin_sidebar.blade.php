@@ -66,7 +66,7 @@
           </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-circle-o text-aqua"></i>View News</a></li>
+        <li><a href="{{ url('admin/breaking-news') }}"><i class="fa fa-circle-o text-aqua"></i>View News</a></li>
         <li><a href="{{ url('/admin/add-breaking-news') }}"><i class="fa fa-circle-o text-aqua"></i>Add News</a></li>
       </ul>
     </li>
